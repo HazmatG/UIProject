@@ -56,7 +56,7 @@ class _BasketPageState extends State<BasketPage> {
             kg: 490,
           ),
           Align(
-              alignment: FractionalOffset.bottomCenter,
+              alignment: Alignment.bottomCenter,
               child: ElevatedButton(
                   onPressed: () {},
                   child: Text('Добавить в корзину'),
@@ -132,37 +132,28 @@ class OrderCard extends StatelessWidget {
               )
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              SizedBox(
-                width: 30,
-                height: 30,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "-",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-                  ),
+          Container(
+            width: 90,
+            height: 30,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(10)
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  CupertinoIcons.minus,
+                  size: 20,
                 ),
-              ),
-              Text(
-                '1',
-                style: TextStyle(fontSize: 18),
-              ),
-              SizedBox(
-                width: 30,
-                height: 30,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "+",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
-                  ),
+                Text('1', style: TextStyle(fontSize: 18),),
+                Icon(
+                  CupertinoIcons.plus,
+                  size: 20,
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          )
         ]));
   }
 }

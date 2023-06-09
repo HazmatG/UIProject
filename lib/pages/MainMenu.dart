@@ -35,10 +35,10 @@ class _MainMenuState extends State<MainMenu> {
       body: ListView(
         children: [
           CustomAppBar(),
-          MenuCard(title: 'Пекарни и кондитерские', image: AssetImage('lib/images/frame579.png')),
-          MenuCard(title: 'Фастфуд', image: AssetImage('lib/images/frame580.png')),
-          MenuCard(title: 'Азиатская кухня', image: AssetImage('lib/images/frame581.png')),
-          MenuCard(title: 'Супы', image: AssetImage('lib/images/frame582.png')),
+          MenuCard(title: 'Пекарни и кондитерские', image: 'lib/images/frame579.png'),
+          MenuCard(title: 'Фастфуд', image: 'lib/images/frame580.png'),
+          MenuCard(title: 'Азиатская кухня', image: 'lib/images/frame581.png'),
+          MenuCard(title: 'Супы', image: 'lib/images/frame582.png'),
         ],
       ),
     );
@@ -70,26 +70,28 @@ class MenuCard extends StatelessWidget {
   });
 
   String title;
-  AssetImage image;
+  String image;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(12),
-      margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      height: 150,
-      width: double.infinity,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: image, fit: BoxFit.fill),
-          borderRadius: BorderRadius.all(Radius.circular(16))),
-      child:
-          Align(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => OrderListPage()));
+        },
+        child: Stack(
+          alignment: Alignment.center,
+            children: [
+          Image.asset(image),
+          Positioned.fill(
+            left: 30,
+          top: 20,
+          child: Align(
             alignment: Alignment.topLeft,
-            child: TextButton(onPressed: () { Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => OrderListPage())); },
-            child: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400, color: Colors.black)),),
-          )
+              child: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),)))
+        ]),
+      ),
     );
   }
 }

@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
 
-class PopularWidget extends StatelessWidget {
+import '../models/categories.dart';
+
+class PopularWidget extends StatefulWidget {
   const PopularWidget({Key? key}) : super(key: key);
+
+  @override
+  State<PopularWidget> createState() => _PopularWidgetState();
+}
+
+class _PopularWidgetState extends State<PopularWidget> {
+  List<Menu>? menus;
+  var isLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,32 +101,18 @@ class PopularCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 6),
-      child: Column(
-        children: [
-          Expanded(
-            child: ConstrainedBox(
-              constraints: BoxConstraints.expand(),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size.fromHeight(40),
-                    backgroundColor: Colors.white
-                  ),
-              onPressed: () {
-                buildShowDialog(context);
-              },
-          child: Container(
-                height: 80, // Set the desired height
-                width: 80, // Set the desired width
-                padding: EdgeInsets.all(10), // Set the desired padding
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover, // Adjust the image's fit
-                ),
-              ),))
-              ),
-          Text(name, style: TextStyle(fontSize: 14)),
-        ],
+      padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+      child: GestureDetector(
+        onTap: () {
+          buildShowDialog(context);
+        },
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Image.asset(image),
+            Align(child: Text(name, style: TextStyle(fontWeight: FontWeight.w500),), alignment: Alignment.bottomCenter,),
+          ],
+        ),
       ),
     );
   }
